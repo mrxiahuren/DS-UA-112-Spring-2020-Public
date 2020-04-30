@@ -44,6 +44,7 @@ def average_logistic_loss(w, data, explanatory_variable, response_variable):
 def regularized_average_logistic_loss(w, data, explanatory_variable, response_variable, alpha):
     penalty = alpha * w**2 
     return penalty + average_logistic_loss(w, data, explanatory_variable, response_variable)         
+
 def plotter(w, data):
     xs = np.linspace(-5, 5, 100)
     ys = sigmoid(w * xs)
@@ -59,7 +60,7 @@ def plotter(w, data):
     plt.plot(xs, ys)
     
     mse = average_logistic_loss(w, data, "X","Y")
-    plt.title(f"Mean Square Error {mse:0.2f}");
+    plt.title(f"Average Logistic Loss {mse:0.2f}");
     
 def regularizer(data, alpha):
     slope = minimize(regularized_average_logistic_loss, x0 = 1, args=(data, "X", "Y", alpha)).x
